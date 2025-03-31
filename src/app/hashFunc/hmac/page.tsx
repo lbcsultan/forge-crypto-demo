@@ -17,7 +17,7 @@ export default function HMACPage() {
   const [hmacValue2, setHmacValue2] = useState('')
 
   const submitHandler = async () => {
-    let result = computeHmac(algorithm, inputText, secret)
+    const result = computeHmac(algorithm, inputText, secret)
     setHmacValue1(result)
   }
   const submitHandlerServer = async () => {
@@ -56,7 +56,7 @@ export default function HMACPage() {
                   type="radio"
                   value={algo}
                   checked={algorithm === algo}
-                  onChange={(e) => setAlgorithm(algo)}
+                  onChange={() => setAlgorithm(algo)}
                 />
                 <label className="p-2" htmlFor={algo}>
                   {algo}
