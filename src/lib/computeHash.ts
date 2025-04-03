@@ -24,7 +24,9 @@ const computeHash = (algorithm: string, input: string | ArrayBuffer) => {
 
   if (input instanceof ArrayBuffer) {
     const bytes = new Uint8Array(input)
-    md.update(bytes)
+    const buffer = forge.util.createBuffer(bytes)
+    const bytesString = buffer.getBytes()
+    md.update(bytesString)
   } else {
     md.update(input)
   }

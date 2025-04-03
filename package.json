@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev --turbopack",
+    "dev": "next dev --turbopack -p 3000",
     "build": "next build",
     "start": "next start",
     "lint": "next lint"
@@ -11,6 +11,7 @@
   "dependencies": {
     "@radix-ui/react-slot": "^1.1.2",
     "axios": "^1.8.4",
+    "bcryptjs": "^3.0.2",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
     "lucide-react": "^0.483.0",
