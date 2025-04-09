@@ -9,11 +9,11 @@ export default function PasswordHashPage() {
   const [password, setPassword] = useState('supersecretpassword')
   const [hpassword, setHpassword] = useState('')
   const [password1, setPassword1] = useState('supersecretpassword')
-  const [result, setResult] = useState(false)
+  // const [result, setResult] = useState(false)
   const [result1, setResult1] = useState(false)
 
   const submitHandler = async () => {
-    let hash = bcrypt.hashSync(password, 8)
+    const hash = bcrypt.hashSync(password, 8)
     setHpassword(hash)
   }
 
