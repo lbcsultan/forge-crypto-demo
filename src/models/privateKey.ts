@@ -1,12 +1,12 @@
 import mongoose from 'mongoose'
 
-const userSchema = new mongoose.Schema({
-  email: {
+const privateKeySchema = new mongoose.Schema({
+  ownerEmail: {
     type: String,
     required: true,
     unique: true,
   },
-  name: {
+  privatekey: {
     type: String,
     required: true,
   },
@@ -20,6 +20,7 @@ const userSchema = new mongoose.Schema({
   },
 })
 
-const User = mongoose.models.User || mongoose.model('User', userSchema)
+const PrivateKey =
+  mongoose.models.PrivateKey || mongoose.model('PrivateKey', privateKeySchema)
 
-export default User
+export default PrivateKey

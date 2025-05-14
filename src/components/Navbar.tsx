@@ -29,6 +29,12 @@ export default async function Navbar() {
         </Link>
       </div>
 
+      <div>
+        <Link href="/certFunc" className="text-white text-lg font-bold">
+          CertFunc
+        </Link>
+      </div>
+
       {session && session.user ? (
         <div className="flex items-center gap-2">
           <Image
