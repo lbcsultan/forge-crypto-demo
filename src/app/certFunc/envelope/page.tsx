@@ -41,6 +41,16 @@ export default function EnvelopePage() {
   const [message, setMessage] = useState('')
   const [error, setError] = useState('')
 
+  const formatJSON = (jsonString: string) => {
+    try {
+      const obj = JSON.parse(jsonString)
+      return JSON.stringify(obj, null, 2)
+    } catch (e) {
+      console.log(e)
+      return jsonString
+    }
+  }
+
   const recoverCert = async () => {
     try {
       const response = await axios.get(`/api/certFunc/cert?email=${receiver}`)
@@ -392,14 +402,11 @@ export default function EnvelopePage() {
 
       <div className="mb-4">
         <label htmlFor="ciphertext" className="block mb-2 font-medium">
-          Ciphertext
+          Envelope
         </label>
-        <textarea
-          id="ciphertext"
-          className="w-full p-2 border rounded bg-gray-50 h-32"
-          value={ciphertextHex}
-          readOnly
-        />
+        <pre className="w-full p-2 border rounded bg-gray-50 h-64 overflow-auto whitespace-pre-wrap">
+          {formatJSON(ciphertextHex)}
+        </pre>
       </div>
 
       <div className="mb-4">

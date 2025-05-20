@@ -146,6 +146,7 @@ export default function CertPage() {
                   className="p-2 outline-none focus:ring-0"
                   id={length.toString()}
                   type="radio"
+                  checked={keyLength === length ? true : false}
                   onChange={() => setKeyLength(length)}
                 />
                 <label className="p-2" htmlFor={length.toString()}>
