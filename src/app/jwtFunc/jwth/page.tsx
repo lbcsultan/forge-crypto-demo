@@ -5,7 +5,6 @@ import { useSession } from 'next-auth/react'
 import { redirect } from 'next/navigation'
 import { useState } from 'react'
 import { jwtDecode } from 'jwt-decode'
-import forge from 'node-forge'
 
 export default function JWTHPage() {
   const { data: session } = useSession()
@@ -13,11 +12,8 @@ export default function JWTHPage() {
   const username = session?.user?.email
 
   const [jh, setJh] = useState('')
-  const [jr, setJr] = useState('')
   const [hdecoded, setHdecoded] = useState('')
-  const [rdecoded, setRdecoded] = useState('')
   const [hresult, setHresult] = useState('')
-  const [rresult, setRresult] = useState('')
 
   const genJwtH = async () => {
     axios.post('/api/jwt/jwth', { username }).then((res) => {
