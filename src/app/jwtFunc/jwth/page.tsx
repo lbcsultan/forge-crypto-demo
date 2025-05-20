@@ -29,57 +29,10 @@ export default function JWTHPage() {
     })
   }
 
-  const genJwtR = async () => {
-    axios.post('/api/jwt/jwtr', { username }).then((res) => {
-      const jr = res.data.jr
-      setJr(jr)
-      localStorage.setItem('jr', jr)
-      const rdecoded = jwtDecode(jr)
-      setRdecoded(JSON.stringify(rdecoded))
-    })
-  }
-
   const verifyJwt = async () => {
     axios.post('/api/jwt/jwthv', { jh }).then((res) => {
       setHresult(res.data.result)
     })
-  }
-
-  const verifyJwtR = async () => {
-    try {
-      // 1. 서버의 인증서 가져오기
-      const serverCertPem = localStorage.getItem('caCert')
-      if (!serverCertPem) {
-        setRresult('서버 인증서가 없습니다.')
-        return
-      }
-
-      // 2. 인증서에서 공개키 추출
-      const serverCert = forge.pki.certificateFromPem(serverCertPem)
-      const publicKey = serverCert.publicKey as forge.pki.rsa.PublicKey
-
-      // 3. JWT 토큰 파싱
-      const parts = jr.split('.')
-      if (parts.length !== 3) {
-        setRresult('유효하지 않은 JWT 토큰입니다.')
-        return
-      }
-
-      const [header, payload, signature] = parts
-
-      // 4. 서명 검증
-      const signatureBytes = forge.util.decode64(signature)
-      const headerPayload = `${header}.${payload}`
-      const md = forge.md.sha256.create()
-      md.update(headerPayload)
-
-      const isValid = publicKey.verify(md.digest().bytes(), signatureBytes)
-
-      setRresult(isValid ? '유효한 토큰' : '유효하지 않은 토큰')
-    } catch (error) {
-      console.error('JWT-RSA 검증 오류:', error)
-      setRresult('검증 중 오류가 발생했습니다.')
-    }
   }
 
   return (
@@ -137,46 +90,6 @@ export default function JWTHPage() {
             value={hresult ? 'valid token' : 'invalid'}
             readOnly
           ></input>
-        </div>
-
-        <div className="mb-4 p-3 bg-slate-200">
-          <h1 className="text-2xl mb-4 font-bold"> JWT-RSA </h1>
-          <button
-            className="primary-button w-full"
-            type="button"
-            onClick={genJwtR}
-          >
-            Issue JWT-RSA by server
-          </button>
-
-          <label className="mb-3 font-bold">
-            JWT-RSA (RSA signature with server&apos;s private key)
-          </label>
-          <textarea
-            className="w-full bg-gray-50 h-32"
-            value={jr}
-            readOnly
-          ></textarea>
-
-          <label className="mb-3 font-bold">
-            JWT-RSA : client decoded, no verification
-          </label>
-          <textarea
-            className="w-full bg-gray-50 h-16"
-            value={rdecoded}
-            readOnly
-          ></textarea>
-          <button
-            className="primary-button w-full"
-            type="button"
-            onClick={verifyJwtR}
-          >
-            Verify JWT-RSA (with server&apos;s public key)
-          </button>
-          <label className="mb-3 font-bold">
-            Verified by client with server&apos;s public key
-          </label>
-          <input className="w-full bg-gray-50" value={rresult} readOnly></input>
         </div>
       </form>
     </div>
