@@ -7,19 +7,26 @@ export default function Home() {
 
       <div className="bg-red-200 px-4 py-2 rounded-md mb-4 w-max">
         <Link href="https://www.npmjs.com/package/node-forge">
-          node-forge package
+          node-forge package: https://www.npmjs.com/package/node-forge
         </Link>
       </div>
 
       <div className="bg-blue-200 px-4 py-2 rounded-md mb-4 w-max">
         <Link href="https://forge-crypto.netlify.app/">
-          Frontend Forge Demo with bootstrap
+          Frontend Forge Demo with bootstrap: https://forge-crypto.netlify.app/
         </Link>
       </div>
 
       <div className="bg-yellow-200 px-4 py-2 rounded-md mb-4 w-max">
         <Link href="https://crypto-demo-phi.vercel.app/">
-          Next.js Fullstack Forge Demo
+          Next.js Fullstack Forge Demo - https://crypto-demo-phi.vercel.app/
+        </Link>
+      </div>
+
+      <div className="bg-yellow-500 px-4 py-2 rounded-md mb-4 w-max">
+        <Link href="https://forge-crypto-demo.vercel.app/">
+          Next.js Fullstack Forge Crypto Demo (This App) -
+          https://forge-crypto-demo.vercel.app/
         </Link>
       </div>
     </div>
