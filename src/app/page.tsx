@@ -25,8 +25,9 @@ export default function Home() {
 
       <div className="bg-yellow-500 px-4 py-2 rounded-md mb-4 w-max">
         <Link href="https://forge-crypto-demo.vercel.app/">
-          Next.js Fullstack Forge Crypto Demo (This App) -
-          https://forge-crypto-demo.vercel.app/
+          Next.js Fullstack Forge Crypto Demo (This App) <br />
+          - https://forge-crypto-demo.vercel.app/ <br />-
+          https://github.com/lbcsultan/forge-crypto-demo
         </Link>
       </div>
     </div>
